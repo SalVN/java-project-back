@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -31,7 +32,7 @@ public class CameraRestController {
 
     @CrossOrigin("*")
     @RequestMapping(value="/cameras/{cameraId}", method=RequestMethod.POST)
-    public void saveCamera(@RequestBody Camera camera) {
+    public void saveCamera(@Valid @RequestBody Camera camera) {
         cameraRepository.save(camera);
     }
 }
