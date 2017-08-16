@@ -1,7 +1,10 @@
 package com.javaproject.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Range;
 
 @Entity
 public class Camera {
@@ -17,6 +20,8 @@ public class Camera {
     public void setCameraId(Long cameraId) {this.cameraId = cameraId;}
 
     @Column(name="megapixels")
+    @NotNull
+    @Range(min = 2, max = 50, message="The megapixel number should be greater than 2 and less than 50")
     public int getMegapixels() {
         return megapixels;
     }
@@ -26,6 +31,7 @@ public class Camera {
     }
 
     @Column(name="camera_make")
+    @NotEmpty
     public String getMake() {
         return make;
     }
@@ -35,6 +41,7 @@ public class Camera {
     }
 
     @Column(name="camera_model")
+    @NotEmpty
     public String getModel() {
         return model;
     }
