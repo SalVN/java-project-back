@@ -41,12 +41,14 @@ public class CameraRestController {
 
     @CrossOrigin("*")
     @RequestMapping(value="/cameras/{cameraId}", method=RequestMethod.DELETE)
-    public ResponseEntity<Void> deleteCamera(@PathVariable Long cameraId) {
+    public ResponseEntity<String> deleteCamera(@PathVariable Long cameraId) {
         Camera camera = cameraRepository.findOne(cameraId);
         if (camera == null) {
-            return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+            String body = "Camera Id Does Not Exist";
+            return new ResponseEntity<String>(body, HttpStatus.NOT_FOUND);
         }
         cameraRepository.delete(cameraId);
-        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+            String body = "Camera has been deleted";
+        return new ResponseEntity<String>(body, HttpStatus.OK);
     }
 }
