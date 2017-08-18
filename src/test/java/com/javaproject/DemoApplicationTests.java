@@ -1,4 +1,4 @@
-package com.northcoders;
+package com.javaproject;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
