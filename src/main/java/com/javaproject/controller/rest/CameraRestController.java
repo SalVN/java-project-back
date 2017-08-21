@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
@@ -28,9 +29,14 @@ public class CameraRestController {
 
     @CrossOrigin("*")
     @RequestMapping(value="/cameras/{cameraId}", method = RequestMethod.GET)
-    public Camera getIndividualCamera(@PathVariable Long cameraId) {
+    public Camera getIndividualCamera(@PathVariable Long cameraId, HttpServletResponse response) {
         Camera camera = cameraRepository.findOne(cameraId);
-        return camera;
+        if (camera == null) {
+            response.setStatus(HttpServletResponse.SC)
+        } else {
+            response.setStatus(HttpServletResponse.SC_OK);
+            return camera;
+        }
     }
 
     @CrossOrigin("*")

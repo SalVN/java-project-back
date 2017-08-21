@@ -49,6 +49,7 @@ public class CameraRestControllerUnitTests {
         String expected = "{cameraId: 1, make:Canon, model:ABC, megapixels:12}";
         System.out.println(result.getResponse().getContentAsString());
         JSONAssert.assertEquals(expected, result.getResponse().getContentAsString(), false);
+        Assert.assertEquals(200, result.getResponse().getStatus());
     }
 
     @Test
@@ -153,6 +154,44 @@ public class CameraRestControllerUnitTests {
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
         Assert.assertEquals(400, result.getResponse().getStatus());
     }
+
+//    @Test
+//    public void DeleteCamera() throws Exception {
+//        Camera camera1 = new Camera();
+//        camera1.setCameraId(1L);
+//        camera1.setMake("Canon");
+//        camera1.setModel("ABC");
+//        camera1.setMegapixels(12);
+//
+//        Camera camera2 = new Camera();
+//        camera2.setCameraId(2L);
+//        camera2.setMake("Canon");
+//        camera2.setModel("DEF");
+//        camera2.setMegapixels(13);
+//
+//        Camera camera3 = new Camera();
+//        camera3.setCameraId(3L);
+//        camera3.setMake("Canon");
+//        camera3.setModel("GHI");
+//        camera3.setMegapixels(14);
+//
+//        List<Camera> cameras = new ArrayList<Camera>();
+//
+//        cameras.add(camera1);
+//        cameras.add(camera2);
+//        cameras.add(camera3);
+//
+//        Mockito.when(cameraRepository.findOne(Mockito.anyLong())).thenReturn(camera1);
+//
+//        Mockito.when(cameraRepository.delete(Mockito.anyLong()));
+//        Mockito.doNothing().when(cameraRepository.delete(Mockito.anyLong()));
+//
+//
+//        RequestBuilder requestBuilder = MockMvcRequestBuilders.delete("/cameras/1").accept(MediaType.APPLICATION_JSON);
+//        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+////        Mockito.verify(cameraRepository, Mockito.times(1)).save(Mockito.any(Camera.class));
+//        Assert.assertEquals(200, result.getResponse().getStatus());
+//    }
 
 
 }
