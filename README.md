@@ -66,8 +66,15 @@ mysql -u root -p -h 127.0.0.1 cameras
 [POST] /cameras/{cameraId} allows a camera to be added to the database from the command line or using a tool such as [Postman](https://www.getpostman.com/).
 
 
-## Test Suite
+### Test Suite
 
+The test suite, contained within the test folder, tests the routes contained in the rest controller. 
+
+From the command line, navigate to the folder containing the pom.xml file and enter:
+
+```
+mvn test
+```
 
 ### Uses
 

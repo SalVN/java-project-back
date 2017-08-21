@@ -32,7 +32,8 @@ public class CameraRestController {
     public Camera getIndividualCamera(@PathVariable Long cameraId, HttpServletResponse response) {
         Camera camera = cameraRepository.findOne(cameraId);
         if (camera == null) {
-            response.setStatus(HttpServletResponse.SC)
+            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+            return null;
         } else {
             response.setStatus(HttpServletResponse.SC_OK);
             return camera;
