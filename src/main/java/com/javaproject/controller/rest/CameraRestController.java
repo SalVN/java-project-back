@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -19,6 +21,8 @@ import java.util.List;
 
 @RestController
 public class CameraRestController {
+
+    private final Logger logger = LoggerFactory.getLogger(CameraRestController.class);
 
     @Autowired
     protected CameraRepository cameraRepository;
@@ -31,11 +35,18 @@ public class CameraRestController {
     @RequestMapping(value="/cameras/{cameraId}", method = RequestMethod.GET)
     public Camera getIndividualCamera(@PathVariable Long cameraId, HttpServletResponse response) {
         Camera camera = cameraRepository.findOne(cameraId);
+
+        logger.debug("getIndividualCamera STARTED");
+
         if (camera == null) {
+            logger.warn("Camera {} doesn't exist", cameraId);
             response.setStatus(HttpServletResponse.SC_NOT_FOUND);
             return null;
         } else {
             response.setStatus(HttpServletResponse.SC_OK);
+
+            logger.debug("getIndividualCar ENDED");
+
             return camera;
         }
     }
